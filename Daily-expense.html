@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url(PHOTOS/background3.jpg) no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 18px;
+        }
+
+        form {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        label {
+            flex: 1;
+            font-weight: bold;
+            margin-right: 1rem;
+            font-size: 15px;
+        }
+
+        input,
+        textarea {
+            flex: 2;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 4px;
+            background-color: #28a745;
+            color: #fff;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>DAILY EXPENSE FORM</h1>
+        <form id="expense-form">
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="trading-return">Trading-Return</label>
+                <input type="text" id="trading-return" name="trading-return" required>
+            </div>
+
+            <div class="form-group">
+                <label for="transport">Transport</label>
+                <input type="text" id="transport" name="transport" required>
+            </div>
+
+            <div class="form-group">
+                <label for="family-expense">Family-Expense</label>
+                <input type="text" id="family-expense" name="family-expense" required>
+            </div>
+
+            <div class="form-group">
+                <label for="investment">Investment</label>
+                <input type="text" id="investment" name="investment" required>
+            </div>
+
+            <div class="form-group">
+                <label for="train-bus-rapido">Up-And-Down</label>
+                <input type="text" id="train-bus-rapido" name="Up-And-Down" required>
+            </div>
+
+            <div class="form-group">
+                <label for="other-expense">Other-Expense</label>
+                <input type="text" id="other-expense" name="Other-Expense" required>
+            </div>
+
+            <div class="form-group">
+                <label for="day-expense">Day-Expense</label>
+                <input type="text" id="day-expense" name="day-expense" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('expense-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            fetch('https://script.google.com/macros/s/AKfycbymmfD_d5_X1Kix4YJixyFrcy8aULKKtJ-PPZT2rHtrDAJ6Y_6u83uADFb-3-NzGD3fgg/exec', { // Replace with your web app URL
+                method: 'POST',
+                contentType: 'application/json',
+                body: JSON.stringify(data)
+            })
+                .then(response => response.text())
+                .then(result => {
+                    alert('Form submitted successfully!');
+                    event.target.reset(); // Reset form fields
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+
+</html>
