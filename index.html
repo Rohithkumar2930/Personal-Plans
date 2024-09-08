@@ -12,7 +12,7 @@
     <div class="overlay">
         <div class="container">
             <h1>Password Required</h1>
-            <form id="passwordForm">
+            <form id="passwordForm" onsubmit="return validatePassword()">
                 <label for="password">Enter Password:</label>
                 <input type="password" id="password" name="password" required>
                 <button type="submit">Submit</button>
@@ -21,5 +21,26 @@
     </div>
     <script src="script.js"></script>
 </body>
+<script>
+    function validatePassword() {
+        // Get the password input field and its value
+        const password = document.getElementById('password').value;
+
+        // The correct password
+        const correctPassword = 'Gold29@30';
+
+        // Check if the entered password is correct
+        if (password === correctPassword) {
+            // Redirect to home.html
+            window.location.href = 'home.html';
+            return false; // Prevent the form from submitting
+        } else {
+            // Alert the user about incorrect password
+            alert('Incorrect password. Please try again.');
+            return false; // Prevent the form from submitting
+        }
+    }
+
+</script>
 
 </html>

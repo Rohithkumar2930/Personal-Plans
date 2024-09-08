@@ -1,12 +1,23 @@
-document.getElementById('passwordForm').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent form submission
-    var password = document.getElementById('password').value;
-    if (password === 'Gold29@30') {
+function validatePassword() {
+    // Get the password input field and its value
+    const password = document.getElementById('password').value;
+
+    // The correct password
+    const correctPassword = 'Gold29@30';
+
+    // Check if the entered password is correct
+    if (password === correctPassword) {
+        // Redirect to home.html
         window.location.href = 'home.html';
+        return false; // Prevent the form from submitting
     } else {
+        // Alert the user about incorrect password
         alert('Incorrect password. Please try again.');
+        return false; // Prevent the form from submitting
     }
-});
+}
+
+
 
 
 // script.js
